@@ -9,4 +9,9 @@ export const requestLogin = async (body) => {
   return result;
 };
 
+export const requestRegister = async (body) => {
+  const result = await api.post('/register', body);
+  return result;
+};
+
 export default api;

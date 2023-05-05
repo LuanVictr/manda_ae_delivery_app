@@ -6,7 +6,7 @@ const registerUser = async (req, res) => {
   const result = await registerServices.registerUser(userInfo);
   res.status(200).json(result);
   } catch (error) {
-    res.status(404).message(error.message);
+    res.status(404).json({ message: error.message });
   }
 };
 

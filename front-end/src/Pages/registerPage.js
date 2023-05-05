@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { requestRegister } from '../utils/axios/axiosApi';
 
 function LoginPage() {
   const [errorMessage, setErrorMessage] = useState('');
@@ -41,6 +42,17 @@ function LoginPage() {
     });
   };
 
+  const registerUser = async () => {
+    try {
+      const result = await requestRegister(registerInfo);
+      if (result) {
+        setErrorMessage('Usuário registrado');
+      }
+    } catch (error) {
+      setErrorMessage('Usuário já registrado');
+    }
+  };
+
   return (
     <div>
       <form className="register form">
@@ -72,6 +84,7 @@ function LoginPage() {
           disabled={ isDisabled }
           data-testid="common_register__button-register"
           type="button"
+          onClick={ registerUser }
         >
           Cadastrar
 
