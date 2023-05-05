@@ -3,26 +3,26 @@ const UsersSchema = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     email: {
       type: DataTypes.STRING,
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     role: {
-      type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
   }, {
     tableName: 'users',
     timestamps: false,
-    underscored: true
+    underscored: true,
   });
   return UsersTable;
-}
+};
 
 module.exports = UsersSchema;

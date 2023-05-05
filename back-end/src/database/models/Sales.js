@@ -1,4 +1,4 @@
-const SalesSchema = (sequelize, DataTypes) => {
+function SalesSchema(sequelize, DataTypes) {
   const SalesTable = sequelize.define('sales', {
     id: {
       type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ const SalesSchema = (sequelize, DataTypes) => {
       foreignKey: true,
     },
     totalPrice: {
-      type: DataTypes.DECIMAL(9,2),
+      type: DataTypes.DECIMAL(9, 2),
     },
     deliveryAddress: {
       type: DataTypes.STRING,
@@ -23,24 +23,25 @@ const SalesSchema = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     saleDate: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
     },
     status: {
       type: DataTypes.STRING,
-    }
+    },
   }, {
     timestamps: false,
     tableName: 'sales',
-    underscored: true
+    underscored: true,
   });
 
   SalesTable.associate = (models) => {
     SalesTable.belongsTo(models.users, {
-      foreignKey: 'userId', as: 'user'
+      foreignKey: 'userId', as: 'user',
     }, {
-      foreignKey: 'sellerId', as: 'seller'
-    }
-    );
-  }
-  return SalesTable
+      foreignKey: 'sellerId', as: 'seller',
+    });
+  };
+  return SalesTable;
 }
+
+module.exports = SalesSchema;
