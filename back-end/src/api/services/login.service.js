@@ -10,7 +10,12 @@ const login = async ({ email, password }) => {
     throw Object.assign(new Error('User not registered'), { status: 404 });
   }
   const token = generateToken(email);
-  return token;
+  return {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token,
+  };
 };
 
 // resolver problema do bcrypt nao estar sendo encontrado

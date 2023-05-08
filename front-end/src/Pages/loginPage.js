@@ -48,7 +48,9 @@ function LoginPage() {
     try {
       const response = await requestLogin({ email, password });
       if (response) {
-        history.push('/sucesso');
+        const localStorageInfo = JSON.stringify(response);
+        localStorage.setItem('userInfo', localStorageInfo);
+        history.push('/products');
       }
     } catch (error) {
       setErrorMessage('Usuário ou senha inválidas');
@@ -84,6 +86,7 @@ function LoginPage() {
 
         </button>
         <button
+          onClick={ () => history.push('/register') }
           data-testid="common_login__button-register"
           type="button"
         >

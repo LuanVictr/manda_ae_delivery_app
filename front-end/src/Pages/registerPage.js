@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestRegister } from '../utils/axios/axiosApi';
 
 function LoginPage() {
@@ -9,6 +10,7 @@ function LoginPage() {
     password: '',
   });
   const [isDisabled, setIsDisabled] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     const userNameMin = 12;
@@ -46,7 +48,9 @@ function LoginPage() {
     try {
       const result = await requestRegister(registerInfo);
       if (result) {
-        setErrorMessage('Usuário registrado');
+        const localStorageInfo = JSON.stringify(response);
+        localStorage.setItem('userInfo', localStorageInfo);
+        history.push('/products');
       }
     } catch (error) {
       setErrorMessage('Usuário já registrado');

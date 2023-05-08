@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const { users } = require('../../database/models');
+const { generateToken } = require('../../utils/jsonwebtoken');
 
 const registerUser = async (userInfo) => {
   const userExists = await users.findOne({ where: { email: userInfo.email } });
@@ -13,7 +14,13 @@ const registerUser = async (userInfo) => {
     password: newPassword,
     role: 'customer',
   });
-  return newUser;
+  const token = generateToken(newUser.email);
+  return {
+    name: newUser.name,
+    email: newUser.email,
+    role: newUser.role,
+    token,
+  };
 };
 
 module.exports = {

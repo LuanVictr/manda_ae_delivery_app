@@ -5,13 +5,18 @@ const api = axios.create({
 });
 
 export const requestLogin = async (body) => {
-  const result = await api.post('/login', body);
-  return result;
+  const { data } = await api.post('/login', body);
+  return data;
 };
 
 export const requestRegister = async (body) => {
-  const result = await api.post('/register', body);
-  return result;
+  const { data } = await api.post('/register', body);
+  return data;
+};
+
+export const requestProducts = async () => {
+  const { data } = await api.get('/products');
+  return data;
 };
 
 export default api;

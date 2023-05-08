@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import Context from "./context";;
+import Context from './context';
 
-function Provider({children}) {
-  const [test, setTest] = useState('working');
+function Provider({ children }) {
+  const [screen, setScreen] = useState('');
+  const [cartInfo, setCartInfo] = useState([]);
 
-  const value = {
-    test,
-    setTest,
-  }
+  const value = useMemo(() => (
+    {
+      screen,
+      setScreen,
+      cartInfo,
+      setCartInfo,
+    }
+  ), [screen, setScreen, cartInfo, setCartInfo]);
 
   return (
-    <Context.Provider value={value}>
+    <Context.Provider value={ value }>
       {children}
     </Context.Provider>
   );

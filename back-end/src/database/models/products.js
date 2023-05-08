@@ -9,17 +9,17 @@ const ProductsSchema = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     price: {
-      type: DataTypes.DECIMAL(4,2),
+      type: DataTypes.DECIMAL(4, 2),
     },
     urlImage: {
       type: DataTypes.STRING,
-    }
+    },
   }, {
     timestamps: false,
     tableName: 'products',
     underscored: true,
-  })
-  return ProductsTable
-}
+  });
+  return ProductsTable;
+};
 
 module.exports = ProductsSchema;
