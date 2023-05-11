@@ -3,6 +3,7 @@ const cors = require('cors');
 const loginRoutes = require('./routes/login.route');
 const registerRoutes = require('./routes/register.route');
 const productsRoutes = require('./routes/products.route');
+const sellRoutes = require('./routes/sell.route');
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(loginRoutes);
 app.use(registerRoutes);
 app.use(productsRoutes);
+app.use(sellRoutes);
 app.get('/coffee', (_req, res) => res.status(418).end());
 
 module.exports = app;
