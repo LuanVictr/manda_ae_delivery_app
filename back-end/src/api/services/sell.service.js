@@ -16,8 +16,20 @@ const getUserIdByName = async (userName) => {
   return user.id;
 };
 
+const getSellById = async (id) => {
+  const sale = await sales.findOne({ where: { id } });
+  return sale;
+};
+
+const getUserById = async (id) => {
+  const user = await users.findOne({ where: { id } });
+  return user;
+};
+
 module.exports = {
   getAllSellers,
   createSell,
   getUserIdByName,
+  getSellById,
+  getUserById,
 };

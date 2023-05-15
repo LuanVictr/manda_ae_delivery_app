@@ -1,0 +1,15 @@
+const orderServices = require('../services/order.service');
+
+const getAllOrdersFromUserId = async (req, res) => {
+  try {
+  const { id } = req.params;
+  const orders = await orderServices.getAllOrdersFromUserId(id);
+  res.status(200).json(orders);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  getAllOrdersFromUserId,
+};
