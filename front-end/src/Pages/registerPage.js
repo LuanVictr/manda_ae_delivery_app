@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestRegister } from '../utils/axios/axiosApi';
+import '../styles/register.style.css';
+import logoImage from '../styles/images/mandaelogo.png';
 
 function LoginPage() {
   const [errorMessage, setErrorMessage] = useState('');
@@ -58,33 +60,37 @@ function LoginPage() {
   };
 
   return (
-    <div>
-      <form className="register form">
-        <input
-          name="userName"
-          onChange={ handleChange }
-          value={ registerInfo.userName }
-          data-testid="common_register__input-name"
-          type="text"
-          placeholder="Seu nome"
-        />
-        <input
-          onChange={ handleChange }
-          value={ registerInfo.email }
-          name="email"
-          data-testid="common_register__input-email"
-          type="email"
-          placeholder="Seu email"
-        />
-        <input
-          onChange={ handleChange }
-          value={ registerInfo.password }
-          name="password"
-          data-testid="common_register__input-password"
-          type="password"
-          placeholder="Sua senha"
-        />
+    <div className="register-page">
+      <form className="register-form">
+        <img className="logo" src={ logoImage } alt="logo" />
+        <div className="inputs">
+          <input
+            name="userName"
+            onChange={ handleChange }
+            value={ registerInfo.userName }
+            data-testid="common_register__input-name"
+            type="text"
+            placeholder="Seu nome"
+          />
+          <input
+            onChange={ handleChange }
+            value={ registerInfo.email }
+            name="email"
+            data-testid="common_register__input-email"
+            type="email"
+            placeholder="Seu email"
+          />
+          <input
+            onChange={ handleChange }
+            value={ registerInfo.password }
+            name="password"
+            data-testid="common_register__input-password"
+            type="password"
+            placeholder="Sua senha"
+          />
+        </div>
         <button
+          className="register-button"
           disabled={ isDisabled }
           data-testid="common_register__button-register"
           type="button"

@@ -1,0 +1,50 @@
+.header {
+  background-color: #301934;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  height: 80%;
+}
+
+.header button {
+  background-color: #301934;
+  border: none;
+  height: fit-content;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  transition: all 0.4s ease 0s;
+}
+
+.nav button:hover {
+  border: 1px solid white;
+}
+
+.header p {
+  color: white;
+}
+
+.logout {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+@media(max-width:600px) {
+  .nav {
+    width: 40%;
+    margin-left: 10px;
+  }
+
+  .header button:hover {
+    font-weight: 900;
+  }
+}

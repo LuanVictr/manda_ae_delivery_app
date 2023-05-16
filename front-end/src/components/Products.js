@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestProducts } from '../utils/axios/axiosApi';
 import ProductsCards from './ProductCards';
 import Context from '../context/context';
+import '../styles/products.style.css';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -25,24 +26,27 @@ function Products() {
   }, [cartInfo]);
 
   return (
-    <div className="products">
-      { isFetched
-        ? (
-          products.map(
-            ({ name, price, urlImage, id }) => (<ProductsCards
-              name={ name }
-              price={ price }
-              url={ urlImage }
-              key={ id }
-            />),
+    <div className="products-page">
+      <div className="products-conteiner">
+        { isFetched
+          ? (
+            products.map(
+              ({ name, price, urlImage, id }) => (<ProductsCards
+                name={ name }
+                price={ price }
+                url={ urlImage }
+                key={ id }
+              />),
+            )
           )
-        )
-        : <p>loading</p>}
+          : <p>loading</p>}
+      </div>
       <button
+        className="checkout-button"
         onClick={ () => history.push('/checkout') }
         type="button"
       >
-        Finlizar pedido
+        Finalizar pedido
 
       </button>
     </div>

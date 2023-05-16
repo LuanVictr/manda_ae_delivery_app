@@ -1,0 +1,22 @@
+.checkout-item {
+  color: white;
+}
+
+.checkout-item td {
+  border: 1px solid black;
+  background-color: #301934;
+  border-radius: 10%;
+}
+
+.checkout-item button {
+  background-color:#301934;
+  font-weight: 900;
+  padding: 12px;
+  border: none;
+  color: white;
+  border-radius: 10%;
+}
+
+.checkout-item button:hover {
+  border: 2px solid white;
+}

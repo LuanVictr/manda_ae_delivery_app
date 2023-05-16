@@ -1,0 +1,9 @@
+.order-card {
+  background-color:#301934;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px;
+  border-radius: 6px;
+}

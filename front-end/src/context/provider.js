@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import Context from './context';
 
 function Provider({ children }) {
-  const [screen, setScreen] = useState('');
   const [cartInfo, setCartInfo] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const value = useMemo(() => (
     {
-      screen,
-      setScreen,
       cartInfo,
       setCartInfo,
+      total,
+      setTotal,
     }
-  ), [screen, setScreen, cartInfo, setCartInfo]);
+  ), [total, setTotal, cartInfo, setCartInfo]);
 
   return (
     <Context.Provider value={ value }>

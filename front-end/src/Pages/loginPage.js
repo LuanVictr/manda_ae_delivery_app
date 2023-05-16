@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { requestLogin } from '../utils/axios/axiosApi';
+import '../styles/login.style.css';
+import logoImage from '../styles/images/mandaelogo.png';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -50,7 +52,9 @@ function LoginPage() {
       if (response) {
         const localStorageInfo = JSON.stringify(response);
         localStorage.setItem('userInfo', localStorageInfo);
-        history.push('/products');
+        return localStorageInfo.role === 'customer'
+          ? history.push('/products')
+          : history.push('/orders');
       }
     } catch (error) {
       setErrorMessage('Usuário ou senha inválidas');
@@ -59,24 +63,28 @@ function LoginPage() {
 
   return (
     <div className="login-page">
-      <form>
-        <input
-          data-testid="common_login__input-email"
-          onChange={ handleChange }
-          name="email"
-          value={ email }
-          type="email"
-          placeholder="Email"
-        />
-        <input
-          data-testid="common_login__input-password"
-          onChange={ handleChange }
-          name="password"
-          value={ password }
-          type="password"
-          placeholder="Senha"
-        />
+      <form className="login-form">
+        <img className="logo" src={ logoImage } alt="logo" />
+        <div className="inputs">
+          <input
+            data-testid="common_login__input-email"
+            onChange={ handleChange }
+            name="email"
+            value={ email }
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            data-testid="common_login__input-password"
+            onChange={ handleChange }
+            name="password"
+            value={ password }
+            type="password"
+            placeholder="Senha"
+          />
+        </div>
         <button
+          className="login-button"
           onClick={ login }
           disabled={ isDisabled }
           data-testid="common_login__button-login"
@@ -86,6 +94,7 @@ function LoginPage() {
 
         </button>
         <button
+          className="sign-button"
           onClick={ () => history.push('/register') }
           data-testid="common_login__button-register"
           type="button"
@@ -93,8 +102,14 @@ function LoginPage() {
           Cadastrar-se
 
         </button>
+        <p
+          className="error-text"
+          data-testid="common_login__element-invalid-email"
+        >
+          {errorMessage}
+
+        </p>
       </form>
-      <p data-testid="common_login__element-invalid-email">{errorMessage}</p>
     </div>
   );
 }

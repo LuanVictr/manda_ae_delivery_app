@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from '../context/context';
+import '../styles/product-card.css';
 
 function ProductsCards({ price, url, name }) {
   const [quantity, setQuantity] = useState(0);
@@ -26,10 +27,10 @@ function ProductsCards({ price, url, name }) {
   };
 
   return (
-    <div>
+    <div className="product-card">
       <img src={ url } alt={ name } />
-      <h4>{price}</h4>
       <p>{name}</p>
+      <h4>{price}</h4>
       <div className="quantity-conteiner">
         <button onClick={ quantityHandle } value="-" type="button">-</button>
         <p>{quantity}</p>
@@ -43,7 +44,6 @@ ProductsCards.propTypes = {
   price: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-/*   quantityHandle: PropTypes.func.isRequired, */
 };
 
 export default ProductsCards;
