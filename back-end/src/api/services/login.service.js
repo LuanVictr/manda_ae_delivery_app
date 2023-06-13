@@ -18,7 +18,6 @@ const login = async ({ email, password }) => {
   };
 };
 
-// resolver problema do bcrypt nao estar sendo encontrado
 
 module.exports = {
   login,

@@ -11,6 +11,7 @@ function DetailsOrdersPage() {
   const [sellerName, setSellerName] = useState('');
   const [cart, setCart] = useState([]);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
   const history = useHistory();
 
   const validateMarkDeliveryButton = async () => {
@@ -20,6 +21,8 @@ function DetailsOrdersPage() {
   };
 
   useEffect(() => {
+    const userInfoStoraged = localStorage.getItem('userInfo');
+    setUserInfo(userInfoStoraged);
     async function fetchData() {
       async function fetchOrder() {
         const order = await requestOrder(id);
@@ -47,8 +50,8 @@ function DetailsOrdersPage() {
     return totalPrice.toFixed(2);
   };
 
-  const markAsDelivered = () => {
-    requestStatusChange(id, 'Entregue');
+  const changeStatus = async (status) => {
+    await requestStatusChange(id, status);
     history.push('/orders');
   };
 
@@ -59,7 +62,7 @@ function DetailsOrdersPage() {
         <h2>Detalhes do pedido</h2>
         <div className="order-details">
           <h4>{`Pedido número ${orderInfo.id}`}</h4>
-          <p>{`P.Vend: ${sellerName}`}</p>
+          {userInfo.role === 'customer' && <p>{`P.Vend: ${sellerName}`}</p> }
           <p>{orderInfo.status}</p>
         </div>
         <div className="order-table">
@@ -79,17 +82,41 @@ function DetailsOrdersPage() {
               key={ index }
             />))}
           </table>
-          <div className="details-botton">
-            <button
-              disabled={ isDisabled }
-              onClick={ markAsDelivered }
-              type="button"
-            >
-              Marcar como entregue
+          { userInfo.role === 'customer'
+            ? (
+              <div className="details-botton">
+                <button
+                  disabled={ isDisabled }
+                  onClick={ () => changeStatus('Entregue') }
+                  type="button"
+                >
+                  Marcar como entregue
 
-            </button>
-            <h3>{`Total: ${calculateTotal()}`}</h3>
-          </div>
+                </button>
+                <h3>{`Total: ${calculateTotal()}`}</h3>
+              </div>
+            )
+            : (
+              <div className="details-botton">
+                <div className="nav-buttons">
+                  <button
+                    onClick={ () => changeStatus('Preparando') }
+                    type="button"
+                  >
+                    Preparando
+
+                  </button>
+                  <button
+                    onClick={ () => changeStatus('Saiu para entrega') }
+                    type="button"
+                  >
+                    Saiu para Entrega
+
+                  </button>
+                </div>
+                <h3>{`Total: ${calculateTotal()}`}</h3>
+              </div>
+            )}
         </div>
       </div>
     </div>

@@ -12,40 +12,60 @@ function Header() {
     setUserInfo(userInfoStoraged);
   }, []);
 
+  const checkRole = () => {
+    if (userInfo.role === 'customer') {
+      return (
+        <div className="nav">
+          <button
+            onClick={ () => history.push('/products') }
+            value="produtos"
+            type="button"
+          >
+            Produtos
+          </button>
+          <button
+            onClick={ () => history.push('/orders') }
+            value="Meus Pedidos"
+            type="button"
+          >
+            Meus Pedidos
+
+          </button>
+        </div>
+      );
+    } if (userInfo.role === 'seller') {
+      return (
+        <div className="nav">
+          <button
+            onClick={ () => history.push('/orders') }
+            value="Meus Pedidos"
+            type="button"
+          >
+            Meus Pedidos
+
+          </button>
+        </div>
+      );
+    } if (userInfo.role === 'administrator') {
+      return (
+        <div className="nav">
+          <button
+            type="button"
+            onClick={ () => history.push('/administrator') }
+          >
+            Gerenciar Usuários
+
+          </button>
+        </div>
+      );
+    }
+  };
+
   return (
     <header className="header">
-      {userInfo.role === 'customer'
-        ? (
-          <div className="nav">
-            <button
-              onClick={ () => history.push('/products') }
-              value="produtos"
-              type="button"
-            >
-              Produtos
-            </button>
-            <button
-              onClick={ () => history.push('/orders') }
-              value="Meus Pedidos"
-              type="button"
-            >
-              Meus Pedidos
-
-            </button>
-          </div>
-        )
-        : (
-          <div className="nav">
-            <button
-              onClick={ () => history.push('/orders') }
-              value="Meus Pedidos"
-              type="button"
-            >
-              Meus Pedidos
-
-            </button>
-          </div>
-        )}
+      {
+        checkRole()
+      }
       <p>{`Olá ${userInfo.name}`}</p>
       <button
         className="logout"

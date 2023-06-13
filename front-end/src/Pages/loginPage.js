@@ -52,9 +52,13 @@ function LoginPage() {
       if (response) {
         const localStorageInfo = JSON.stringify(response);
         localStorage.setItem('userInfo', localStorageInfo);
-        return localStorageInfo.role === 'customer'
-          ? history.push('/products')
-          : history.push('/orders');
+        if (response.role === 'customer') {
+          return history.push('/products');
+        } if (response.role === 'seller') {
+          return history.push('/orders');
+        } if (response.role === 'administrator') {
+          return history.push('/administrator');
+        }
       }
     } catch (error) {
       setErrorMessage('Usuário ou senha inválidas');

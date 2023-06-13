@@ -59,4 +59,9 @@ export const requestOrdersBySellerId = async (id) => {
   return data;
 };
 
+export const requestAllUsers = async () => {
+  const { data } = await api.get('/users');
+  return data;
+};
+
 export default api;

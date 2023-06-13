@@ -8,6 +8,10 @@
   margin: 20px;
 }
 
+.product-card img {
+  width: 50%;
+}
+
 .quantity-conteiner {
   display: flex;
   flex-direction: row;

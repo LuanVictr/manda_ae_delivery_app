@@ -38,7 +38,8 @@
 }
 
 .details-botton button {
-  height: 40px;
+  margin-left: 20px;
+  height: fit-content;
   color: white;
   background-color: #301934;
   border: 2px solid white;

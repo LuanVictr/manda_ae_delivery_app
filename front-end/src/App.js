@@ -6,6 +6,7 @@ import './App.css';
 import CheckoutPage from './Pages/checkoutPage';
 import OrdersPage from './Pages/ordersPage';
 import DetailsOrdersPage from './Pages/orderDetailsPage';
+import AdministratorPage from './Pages/administratorPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/checkout" component={ CheckoutPage } />
       <Route path="/orders" component={ OrdersPage } />
       <Route path="/order/:id" component={ DetailsOrdersPage } />
+      <Route path="/administrator" component={ AdministratorPage } />
     </Switch>
   );
 }
