@@ -20,6 +20,9 @@
 <li> Tela do administrador onde ele pode cadastrar novas pessoas clientes ou vendedoras </li>
 </ul>
 
+![Gravação de tela de 28-06-2023 16_41_01](https://github.com/LuanVictr/manda_ae_delivery_app/assets/94076411/19289643-9d5b-40e8-81cc-42c8e556dc66)
+![Gravação de tela de 28-06-2023 16_50_29](https://github.com/LuanVictr/manda_ae_delivery_app/assets/94076411/8bc4a16f-fd64-48c9-bb71-704f35fdd9cf)
+
 <h4> Ferramentas Utilizadas: </h4>
 
 ##
